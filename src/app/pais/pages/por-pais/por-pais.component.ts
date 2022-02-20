@@ -13,9 +13,9 @@ export class PorPaisComponent {
   paises: Country[] = [];
   constructor(private pasisService: PaisService) {}
 
-  buscar() {
+  buscar(termino: string) {
     this.hayError = false;
-    console.log(this.termino);
+    this.termino = termino;
 
     this.pasisService.searchCountry(this.termino).subscribe({
       next: (paises) => {
@@ -27,5 +27,9 @@ export class PorPaisComponent {
         this.paises = [];
       },
     });
+  }
+
+  sugerencias(termino: string) {
+    this.hayError = false;
   }
 }
