@@ -10,7 +10,7 @@ import { Country } from '../../interfaces/pais.interface';
   styles: [],
 })
 export class VerPaisComponent implements OnInit {
-  pais!: Country;
+  pais!: Country[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,6 +23,8 @@ export class VerPaisComponent implements OnInit {
         switchMap(({ id }) => this.paisService.getCountryId(id)),
         tap((resp) => console.log(resp))
       )
-      .subscribe((pais) => (this.pais = pais));
+      .subscribe((pais) => {
+        this.pais = pais;
+      });
   }
 }
